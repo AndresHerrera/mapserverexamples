@@ -1,0 +1,108 @@
+#######################################################
+#	Version: 0.2
+#   Licence: GNU GPL
+#	Autor: Andres Herrera
+#   Contact: fabio.herrera at correounivalle.edu.co
+#######################################################
+
+MAP
+	NAME Ejemplo5
+		SIZE 800 600
+		STATUS ON
+		#EXTENT [xmin] [ymin] [xmax] [ymax]
+		EXTENT 1059550.00 869878 1063630.0 872052
+		
+		SHAPEPATH "geodata/"
+		FONTSET "lib/fonts/fonts.txt"
+		SYMBOLSET "lib/symbols/symbols.sym"
+		
+		IMAGECOLOR 255 255 255
+		UNITS METERS
+
+	WEB
+		IMAGEPATH "/var/www/html/mapserverexamples/tmp/"
+		IMAGEURL "tmp/"
+	END
+	
+	#Leyenda embebida
+	LEGEND
+		STATUS EMBED
+		IMAGECOLOR 255 255 102
+		POSITION LL
+		KEYSIZE 20 12
+		KEYSPACING 5 5
+		LABEL
+			TYPE TRUETYPE
+			FONT "sans"
+			SIZE 9
+			COLOR 0 0 0
+		END
+		OUTLINECOLOR 51 51 51
+		#TRANSPARENT on
+	END
+	
+	SCALEBAR
+		STYLE 0
+		STATUS EMBED
+		SIZE 250 4
+		COLOR 0 0 0
+		UNITS METERS
+		INTERVALS 5
+		TRANSPARENT off
+		POSITION LR
+		BACKGROUNDCOLOR 255 255 255
+		IMAGECOLOR 255 255 255
+		OUTLINECOLOR 211 211 211
+		LABEL
+			COLOR 0 0 0
+			SIZE TINY
+		END 
+	END
+
+
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "barrios_cali.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "Barrios Cali"
+			STYLE
+				COLOR 255 123 0
+				OUTLINECOLOR 0 0 0
+			END
+		END
+	END
+	
+	LAYER
+		NAME "Lineas"
+		STATUS ON
+		DATA "rutas_mio.shp"
+		TYPE LINE
+		CLASS
+			NAME "Rutas MIO"
+			STYLE
+				COLOR 23 0 87
+				OUTLINECOLOR 7 123 123
+			END
+		END
+	END
+	
+	LAYER
+		NAME "Puntos"
+		STATUS ON
+		DATA "estaciones_mio.shp"
+		TYPE POINT
+		CLASS
+			NAME "Estaciones MIO"
+			STYLE
+			    SYMBOL star
+				SIZE 10
+				COLOR 0 34 125
+				OUTLINECOLOR 0 255 0
+			END
+		END
+	END
+	
+END

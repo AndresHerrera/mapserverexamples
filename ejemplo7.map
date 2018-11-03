@@ -1,0 +1,112 @@
+#######################################################
+#	Version: 0.2
+#   Licence: GNU GPL
+#	Autor: Andres Herrera
+#   Contact: fabio.herrera at correounivalle.edu.co
+#######################################################
+
+MAP
+	NAME Ejemplo7
+		SIZE 800 600
+		STATUS ON
+		#EXTENT [xmin] [ymin] [xmax] [ymax]
+		EXTENT 1059550.00 869878 1063630.0 872052
+		
+		SHAPEPATH "geodata/"
+		FONTSET "lib/fonts/fonts.txt"
+		SYMBOLSET "lib/symbols/symbols.sym"
+		
+		IMAGECOLOR 255 255 255
+		UNITS METERS
+
+	WEB
+		#IMAGEPATH "/var/www/html/mapserverexamples/tmp/"
+		#IMAGEURL "tmp/"
+		
+		METADATA  
+		"wms_title"           "Ejemplo WMS"
+		"wms_onlineresource"  "http://localhost:90/cgi-bin/mapserv?"
+		"ows_service_onlineresource" "http://localhost:90/cgi-bin/mapserv?"
+		"wms_srs"       	  "EPSG:3115"
+		"wms_transparent"     "true"
+		"wms_enable_request" "*"
+		"wms_feature_info_mime_type" "text/html"
+		"wms_format" "image/png"
+	
+		END
+	END
+	
+	PROJECTION
+		"init=epsg:3115"
+	END
+	
+	LAYER
+		NAME "Poligonos"
+		
+		METADATA
+			"wms_srs"             "EPSG:3115"
+			"wms_name"            "Poligonos"
+			"wms_server_version"  "1.1.0"
+			"wms_format"          "image/png"
+			"wms_transparent"     "true"
+			
+			"wms_title"      	"Poligonos" ## REQUIRED
+			"wms_onlineresource"  "http://localhost:90/cgi-bin/mapserv"
+			"ows_service_onlineresource" "http://localhost:90/cgi-bin/mapserv?"
+			"wms_srs"            ""
+			"wms_enable_request" "*"    
+			"wfs_feature_info_mime_type" "application/vnd.ogc.gml"
+
+			"wfs_title"          "Poligonos" ## REQUIRED
+			"wfs_onlineresource"  "http://localhost:90/cgi-bin/mapserv"
+			"wfs_srs"            ""
+			"wfs_abstract"       "" 
+			"wfs_enable_request" "*" 
+		
+		
+		END
+		
+		STATUS ON
+		DATA "barrios_cali.shp"
+		TYPE POLYGON
+		
+		CLASS
+			NAME "Barrios Cali"
+			STYLE
+				COLOR 255 123 0
+				OUTLINECOLOR 0 0 0
+			END
+		END
+	END
+	
+	LAYER
+		NAME "Lineas"
+		STATUS ON
+		DATA "rutas_mio.shp"
+		TYPE LINE
+		CLASS
+			NAME "Rutas MIO"
+			STYLE
+				COLOR 23 0 87
+				OUTLINECOLOR 7 123 123
+			END
+		END
+	END
+	
+	LAYER
+		NAME "Puntos"
+		STATUS ON
+		DATA "estaciones_mio.shp"
+		TYPE POINT
+		CLASS
+			NAME "Estaciones MIO"
+			STYLE
+			    SYMBOL star
+				SIZE 10
+				COLOR 0 34 125
+				OUTLINECOLOR 0 255 0
+			END
+		END
+	END
+	
+END

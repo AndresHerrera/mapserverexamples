@@ -1,0 +1,13 @@
+shp2img -m ejemplo1.map -o tmp/ejemplo1.png -i PNG
+
+shp2img -m ejemplo2.map -o tmp/ejemplo2.png -i PNG
+
+shp2img -m ejemplo3.map -o tmp/ejemplo3.png -i PNG
+
+shp2img -m ejemplo4.map -o tmp/ejemplo3.png -i PNG
+
+shp2img -m ejemplo5.map -o tmp/ejemplo3.png -i PNG
+
+http://localhost:90/cgi-bin/mapserv?map=/var/www/html/mapserverexamples/ejemplo7.map
+
+http://localhost:90/cgi-bin/mapserv?map=/var/www/html/mapserverexamples/ejemplo7.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities

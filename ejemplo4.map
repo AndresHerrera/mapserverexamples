@@ -1,0 +1,90 @@
+#######################################################
+#	Version: 0.2
+#   Licence: GNU GPL
+#	Autor: Andres Herrera
+#   Contact: fabio.herrera at correounivalle.edu.co
+#######################################################
+
+MAP
+	NAME Ejemplo4
+		SIZE 800 600
+		STATUS ON
+		#EXTENT [xmin] [ymin] [xmax] [ymax]
+		EXTENT 1053855.50 860198.93 1068480.77 879011.06
+		
+		SHAPEPATH "geodata/"
+		FONTSET "lib/fonts/fonts.txt"
+		SYMBOLSET "lib/symbols/symbols.sym"
+		
+		IMAGECOLOR 255 255 255
+		UNITS METERS
+
+	WEB
+		IMAGEPATH "/var/www/html/mapserverexamples/tmp/"
+		IMAGEURL "tmp/"
+	END
+	
+	
+
+	LAYER
+		CONNECTIONTYPE postgis
+		NAME "Poligonos"
+		STATUS ON
+		CONNECTION "user=postgres password=p dbname=clasegeoinf host=localhost port=5432"
+		DATA "the_geom FROM barrios_cali as poligonos using unique gid using SRID=3115"
+		TYPE POLYGON
+		CLASS
+			STYLE
+				COLOR 125 0 255
+				OUTLINECOLOR 0 0 0
+			END
+		END
+	END
+	
+	LAYER
+		CONNECTIONTYPE postgis
+		NAME "Lineas"
+		STATUS ON
+		CONNECTION "user=postgres password=p dbname=clasegeoinf host=localhost port=5432"
+		DATA "the_geom FROM rutas_mio as lineas using unique gid using SRID=3115"
+		TYPE LINE
+		CLASS
+			STYLE
+				COLOR 0 255 0
+				OUTLINECOLOR 0 0 0
+			END
+		END
+	END
+	
+	LAYER
+		CONNECTIONTYPE postgis
+		NAME "Puntos"
+		STATUS ON
+		CONNECTION "user=postgres password=p dbname=clasegeoinf host=localhost port=5432"
+		DATA "the_geom FROM estaciones_mio as puntos using unique gid using SRID=3115"
+		TYPE POINT
+		CLASS
+			STYLE
+			    SYMBOL tent
+				SIZE 20
+				COLOR 123 34 125
+				OUTLINECOLOR 250 255 0
+			END
+		END
+	END
+	
+	LAYER
+	  NAME "Semaforos"
+	  TYPE RASTER
+	  STATUS ON
+	  CONNECTION "http://ws-idesc.cali.gov.co:8081/geoserver/wms?"
+	  CONNECTIONTYPE WMS
+	  METADATA
+	    "wms_srs"             "EPSG:3115"
+	    "wms_name"            "idesc:movi_semaforos"
+	   "wms_server_version"  "1.1.0"
+	   "wms_format"          "image/png"
+	  END
+	END 
+	
+END

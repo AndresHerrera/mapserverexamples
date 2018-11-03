@@ -1,0 +1,68 @@
+#######################################################
+#	Version: 0.2
+#   Licence: GNU GPL
+#	Autor: Andres Herrera
+#   Contact: fabio.herrera at correounivalle.edu.co
+#######################################################
+
+MAP
+	NAME Ejemplo1
+		SIZE 800 600
+		STATUS ON
+		#EXTENT [xmin] [ymin] [xmax] [ymax]
+		EXTENT 1053855.50 860198.93 1068480.77 879011.06
+		
+		SHAPEPATH "geodata/"
+		FONTSET "lib/fonts/fonts.txt"
+		SYMBOLSET "lib/symbols/symbols.sym"
+		
+		IMAGECOLOR 255 255 255
+		UNITS dd
+
+	WEB
+		IMAGEPATH "/var/www/html/mapserverexamples/tmp/"
+		IMAGEURL "tmp/"
+	END
+
+	LAYER
+		NAME "Poligonos"
+		STATUS ON
+		DATA "barrios_cali.shp"
+		TYPE POLYGON
+		CLASS
+			STYLE
+				COLOR 255 123 0
+				OUTLINECOLOR 0 0 0
+			END
+		END
+	END
+	
+	LAYER
+		NAME "Lineas"
+		STATUS ON
+		DATA "rutas_mio.shp"
+		TYPE LINE
+		CLASS
+			STYLE
+				COLOR 0 0 0
+				OUTLINECOLOR 0 0 0
+			END
+		END
+	END
+	
+	LAYER
+		NAME "Puntos"
+		STATUS ON
+		DATA "estaciones_mio.shp"
+		TYPE POINT
+		CLASS
+			STYLE
+			    SYMBOL star
+				SIZE 10
+				COLOR 0 34 125
+				OUTLINECOLOR 0 255 0
+			END
+		END
+	END
+	
+END
